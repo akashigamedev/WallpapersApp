@@ -1,6 +1,10 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -18,6 +22,10 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val property = Properties()
+        property.load(project.rootProject.file("local.properties").inputStream())
+        buildConfigField(type = "String", name = "API_KEY", property.getProperty("API_KEY"))
     }
 
     buildTypes {
@@ -27,6 +35,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        buildFeatures {
+            buildConfig = true
         }
     }
     compileOptions {
@@ -66,4 +78,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+//    Custom Dependencies
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp3)
+    implementation(libs.logging.interceptor)
+    implementation(libs.room.ktx)
+    implementation(libs.room.common)
+    kapt(libs.room.compiler)
+    implementation(libs.navigation.compose)
+    implementation(libs.hilt.common)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+
 }
