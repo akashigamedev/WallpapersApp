@@ -25,6 +25,9 @@ room = "2.6.1"
 #NavigationCompose
 navigationCompose = "2.7.7"
 
+#CoilCompose
+coil = "2.6.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -60,6 +63,9 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 #NavigationCompose
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose"}
+
+#CoilCompose
+coil_compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
